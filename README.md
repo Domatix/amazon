@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/Domatix/amazon.svg?branch=12.0)
+[![Build Status](https://travis-ci.com/Domatix/amazon.svg?branch=12.0)](https://travis-ci.com/Domatix/amazon)
 
 Odoo Amazon Integration Modules
 ================================
