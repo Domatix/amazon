@@ -14,7 +14,6 @@
     <field name="res_model">amazon.marketplace</field>
     <field name="view_mode">kanban,form</field>
     <field name="context">{'search_default_group_country_id':1}</field>
-    <field name="view_type">form</field>
     <field name="view_id" ref="view_amazon_marketplace_kanban"/>
   </record>
 
