@@ -184,6 +184,60 @@ class AmazonSeller(models.Model):
             next_token = order_data.parsed.get('NextToken', {}).get('value')
             has_next = bool(next_token)
 
+    def import_order_manual(self, marketplaces, seller, start_date, end_date):
+        # seller = self.env['amazon.seller'].search([], limit=1)
+        start_date = start_date.isoformat(sep='T')
+        end_date = end_date.isoformat(sep='T')
+        mws_obj = Orders(access_key=str(seller.access_key),
+                         secret_key=str(seller.secret_key),
+                         account_id=str(seller.merchant_id),
+                         region=seller.country_id.code
+                         )
+        has_next = True
+        next_token = None
+        orders_data = []
+        market_obj = self.env['amazon.marketplace']
+        marketplaceids = marketplaces.mapped('market_code')
+        orderstatus = ('Unshipped', 'PartiallyShipped', 'Shipped')
+        while has_next:
+            time.sleep(1)
+            order_data = mws_obj.list_orders(
+                marketplaceids=marketplaceids,
+                created_after=start_date,
+                created_before=end_date,
+                orderstatus=orderstatus,
+                next_token=next_token,
+            )
+            orders = order_data.parsed.get('Orders', {}).get('Order', [])
+            if orders and isinstance(orders, dict):
+                orders_data.append(orders)
+            elif orders and isinstance(orders, list):
+                orders_data += orders
+            for order in orders_data:
+                market_code = order.get(
+                    'MarketplaceId', {}).get(
+                    'value', False)
+                marketplace = market_obj.search([
+                    ('market_code', '=', market_code)])
+                sale_channel = order.get(
+                    'SalesChannel', {}).get(
+                    'value', 'sale')
+                if sale_channel == 'Non-Amazon':
+                    continue
+                seller._create_sale_order(order, marketplace, mws_obj)
+                # last_purchase_date = order.get('PurchaseDate').get('value')
+                # last_purchase_date = parse(
+                #     last_purchase_date).replace(tzinfo=None)
+                # if single_market:
+                #     marketplace.last_import_date = last_purchase_date
+                # else:
+                #     seller.last_import_date_seller = last_purchase_date
+                #     marketplace.last_import_date = last_purchase_date
+            # commit a batch of 100 orders due to request throttled from Amazon
+            self.env.cr.commit()
+            next_token = order_data.parsed.get('NextToken', {}).get('value')
+            has_next = bool(next_token)
+
     def _create_sale_order(self, order, marketplace, mws_obj):
         IrDefault = self.env['ir.default'].sudo()
         amazon_user = IrDefault.get('res.config.settings', 'amazon_user_id')

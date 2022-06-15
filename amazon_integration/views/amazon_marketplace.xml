@@ -6,7 +6,9 @@
     <field name="arch" type="xml">
       <form string="Amazon Marketplace" create="0">
         <header>
-          <button name="import_market_orders" string="Import Market Orders" type="object" class="btn-primary"/>
+          <button name="%(amazon_integration.action_amazon_import_act_window)d" string="Import Market Orders"
+          type="action" class="btn-primary"/>
+<!-- <button name="import_market_orders" string="Import Market Orders" type="object" class="btn-primary"/> -->
         </header>
         <sheet>
 
@@ -97,8 +99,8 @@
                 </div>
               </div>
               <div class="o_kanban_primary_left">
-                <button type="object" name="import_market_orders" style="margin-bottom:20px;" class="btn btn-primary">
-                  <span>Import Market Orders</span>
+              <button type="action" name="%(amazon_integration.action_amazon_import_act_window)d" style="margin-bottom:20px;" class="btn btn-primary">
+                <span>Import Market Orders</span>
                 </button>
               </div>
             </div>

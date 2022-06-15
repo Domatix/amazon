@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-28 13:10+0000\n"
+"PO-Revision-Date: 2020-04-28 13:10+0000\n"
 "POT-Creation-Date: 2019-11-07 13:26+0000\n"
 "PO-Revision-Date: 2019-11-07 13:26+0000\n"
 "Last-Translator: <>\n"
@@ -70,6 +72,7 @@ msgid "Amazon Gift Costs"
 msgstr "Costes de regalo de Amazon"
 
 #. module: amazon_integration
+#: model_terms:ir.ui.view,arch_db:amazon_integration.action_amazon_import_wizard
 #: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_sale_ref_form
 msgid "Amazon Info"
 msgstr "Información de Amazon"
@@ -116,6 +119,16 @@ msgid "Amazon Shipping Costs"
 msgstr "Costes de envío de Amazon"
 
 #. module: amazon_integration
+#: model_terms:ir.ui.view,arch_db:amazon_integration.action_amazon_import_wizard
+msgid "Amazon import Manual"
+msgstr "Importador manual Amazon"
+
+#. module: amazon_integration
+#: model:ir.actions.act_window,name:amazon_integration.action_amazon_import_act_window
+msgid "Amazon import orders"
+msgstr "Importar pedidos Amazon"
+
+#. module: amazon_integration
 #: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_marketplace_search
 #: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_marketplace_tree
 msgid "Amazon marketplace"
@@ -132,6 +145,11 @@ msgstr "Amazon: importar órdenes"
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__message_attachment_count
 msgid "Attachment Count"
 msgstr "Conteo de archivos adjuntos"
+
+#. module: amazon_integration
+#: model_terms:ir.ui.view,arch_db:amazon_integration.action_amazon_import_wizard
+msgid "Cancel"
+msgstr "Cancelar"
 
 #. module: amazon_integration
 #: model_terms:ir.actions.act_window,help:amazon_integration.amazon_seller_action
@@ -175,12 +193,14 @@ msgid "Country"
 msgstr "País"
 
 #. module: amazon_integration
+#: model:ir.model.fields,field_description:amazon_integration.field_amazon_import_manual__create_uid
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__create_uid
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_seller__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: amazon_integration
+#: model:ir.model.fields,field_description:amazon_integration.field_amazon_import_manual__create_date
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__create_date
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_seller__create_date
 msgid "Created on"
@@ -204,29 +224,22 @@ msgstr "Productos por defecto"
 
 #. module: amazon_integration
 #: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_res_config_settings_form
-msgid "Default user for sales"
-msgstr "Comercial por defecto en ventas"
-
-#. module: amazon_integration
-#: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_marketplace_kanban
-msgid "Delete"
+@ -231,7 +213,6 @@
 msgstr "Suprimir"
 
 #. module: amazon_integration
+#: model:ir.model.fields,field_description:amazon_integration.field_amazon_import_manual__display_name
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__display_name
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_seller__display_name
 msgid "Display Name"
-msgstr "Nombre a mostrar"
-
-#. module: amazon_integration
-#: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_marketplace_kanban
-msgid "Dropdown menu"
-msgstr "Menú desplegable"
-
-#. module: amazon_integration
-#: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_marketplace_kanban
+@ -247,11 +228,6 @@ msgstr "Menú desplegable" @@ -247,11 +228,6 @@ msgstr "Menú desplegable"
 msgid "Edit"
 msgstr "Editar"
+
+#. module: amazon_integration
+#: model:ir.model.fields,field_description:amazon_integration.field_amazon_import_manual__end_date
+msgid "End date"
+msgstr "Fecha fin"
 
 #. module: amazon_integration
 #: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_sale_order_search
@@ -267,6 +280,7 @@ msgid "Group By"
 msgstr "Agrupar por"
 
 #. module: amazon_integration
+#: model:ir.model.fields,field_description:amazon_integration.field_amazon_import_manual__id
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__id
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_seller__id
 msgid "ID"
@@ -286,6 +300,11 @@ msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 #: model:ir.model.fields,help:amazon_integration.field_amazon_marketplace__message_has_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
+
+#. module: amazon_integration
+#: model_terms:ir.ui.view,arch_db:amazon_integration.action_amazon_import_wizard
+msgid "Import"
+msgstr "Importar"
 
 #. module: amazon_integration
 #: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_marketplace_form
@@ -324,18 +343,21 @@ msgid "Last Import Date"
 msgstr "Fecha de sincronización"
 
 #. module: amazon_integration
+#: model:ir.model.fields,field_description:amazon_integration.field_amazon_import_manual____last_update
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace____last_update
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_seller____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
 #. module: amazon_integration
+#: model:ir.model.fields,field_description:amazon_integration.field_amazon_import_manual__write_uid
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__write_uid
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_seller__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
 
 #. module: amazon_integration
+#: model:ir.model.fields,field_description:amazon_integration.field_amazon_import_manual__write_date
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__write_date
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_seller__write_date
 msgid "Last Updated on"
@@ -363,6 +385,7 @@ msgid "Marketplace Settings"
 msgstr "Ajustes del Marketplace"
 
 #. module: amazon_integration
+#: model:ir.model.fields,field_description:amazon_integration.field_amazon_import_manual__marketplace_ids
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_seller__marketplace_ids
 #: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_seller_form
 msgid "Marketplaces"
@@ -487,6 +510,12 @@ msgstr "Vendedor"
 #: model:ir.actions.act_window,name:amazon_integration.amazon_res_config_settings_action
 #: model:ir.ui.menu,name:amazon_integration.amazon_res_config_settings_menu
 msgid "Settings"
+msgstr "Ajustes"
+
+#. module: amazon_integration
+#: model:ir.model.fields,field_description:amazon_integration.field_amazon_import_manual__start_date
+msgid "Start date"
+msgstr "Fecha inicio"
 msgstr "Configuración"
 
 #. module: amazon_integration
@@ -539,6 +568,11 @@ msgstr "Mensajes del sitio web"
 #: model:ir.model.fields,help:amazon_integration.field_amazon_marketplace__website_message_ids
 msgid "Website communication history"
 msgstr "Historial de comunicaciones del sitio web"
+
+#. module: amazon_integration
+#: model:ir.model,name:amazon_integration.model_amazon_import_manual
+msgid "amazon.import.manual"
+msgstr ""
 
 #. module: amazon_integration
 #: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_seller_form
