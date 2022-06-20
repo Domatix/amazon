@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_amazon_selling_partner_form" model="ir.ui.view">
+    <field name="name">view.amazon_selling_partner.form</field>
+    <field name='inherit_id' ref='amazon_integration.view_amazon_seller_form'/>
+    <field name="model">amazon.seller</field>
+    <field name="arch" type="xml">
+      <group name="seller" position="before">
+        <group name="api">
+          <field name="api_mode" required="1" />
+        </group>
+      </group>
+      <group name="keys" position="attributes">
+        <attribute name="attrs">{'invisible':[('api_mode','=', 'sp')]}</attribute>
+      </group>
+      <group name="keys" position="after">
+        <group name="sp_keys" attrs="{'invisible':[('api_mode','=', 'mws')]}" >
+          <field name="role_arn" required="1"/>
+          <field name="refresh_token" password="True" required="0"/>
+          <field name="lwa_app_id" password="True" required="1"/>
+          <field name="lwa_client_secret" password="True" required="1"/>
+          <field name="access_key" password="True" required="1"/>
+          <field name="secret_key" password="True" required="1"/>
+          <field name="merchant_id" password="True" required="1"/>
+      </group>
+      </group>
+    </field>
+  </record>
+</odoo>
