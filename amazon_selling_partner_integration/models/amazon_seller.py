@@ -46,6 +46,15 @@ class AmazonSeller(models.Model):
 
         return credentials, country_code
 
+
+    @throttle_retry()
+    @load_all_pages()
+    def load_all_orders(**kwargs):
+        """
+        a generator function to return all pages, obtained by NextToken
+        """
+        return Orders().get_orders(**kwargs)
+
     def get_marketplaces(self):
         if self.api_mode == 'sp':
             credentials, country_code = self.connect_sp_api(self.country_id)
@@ -100,7 +109,10 @@ class AmazonSeller(models.Model):
                       last_import_date=False, single_market=False):
         if self.api_mode == 'sp':
             # to-do
-            print('to-do')
+            for page in load_all_orders(LastUpdatedAfter=(datetime.utcnow() - timedelta(days=7)).isoformat()):
+                for order in page.payload.get('Orders'):
+                    print(order)
+                    print('to-do')
         else:
             res = super().import_orders(marketplaces, seller, last_import_date, single_market)
             return res
