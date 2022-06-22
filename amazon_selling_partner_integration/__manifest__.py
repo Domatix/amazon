@@ -7,7 +7,7 @@
     'version': '13.0.1.0.0',
     'license': 'AGPL-3',
     'website': 'https://github.com/OCA/connector-ecommerce',
-    'depends': ['amazon_integration'],
+    'depends': ['amazon_integration','base_location'],
     'category': 'Sales',
     'author': 'Domatix, '
               'Odoo Community Association (OCA)',
