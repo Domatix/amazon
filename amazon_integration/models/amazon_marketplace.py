@@ -50,6 +50,14 @@ class AmazonMarketplace(models.Model):
         comodel_name='account.payment.term',
         string='Payment Term')
 
+    team_id = fields.Many2one(
+        comodel_name='crm.team',
+        string='Sale Team')
+
+    user_id = fields.Many2one(
+        comodel_name='res.users',
+        string='Commercial')
+
     # Import FBM and FBA orders
 
     def import_market_orders(self):

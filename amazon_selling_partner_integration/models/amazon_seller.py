@@ -163,7 +163,7 @@ class AmazonSeller(models.Model):
             values = {'LastUpdatedAfter': start_date,
                       'LastUpdatedBefore': end_date,
                       'OrderStatuses': ['Unshipped', 'PartiallyShipped', 'Shipped'],
-                      'MarketplaceIds': marketplaceids
+                      'MarketplaceIds': marketplaceids,
                       # 'RestrictedResources': ['buyerInfo', 'shippingAddress'],
                       }
             for page in self.load_all_orders(**values):
@@ -181,39 +181,45 @@ class AmazonSeller(models.Model):
 
     def _create_sale_order(self, order, marketplace, page):
         if self.api_mode == 'sp':
-            IrDefault = self.env['ir.default'].sudo()
-            amazon_user = IrDefault.get('res.config.settings', 'amazon_user_id')
             sale_obj = self.env['sale.order']
             amazon_order_ref = order.get('AmazonOrderId')
-            fulfillment_channel = order.get('FulfillmentChannel')
-            amazon_fulfillment = 'fba' if fulfillment_channel == 'AFN' else 'fbm'
-            date_order = parser.parse(
-                order.get('PurchaseDate')).replace(tzinfo=None)
-            pricelist = marketplace.pricelist_id
-            invoice_partner, delivery_partner = self._get_partner(order)
             order_found = sale_obj.search([
                 ('amazon_reference', '=', amazon_order_ref)])
             if not order_found:
+                invoice_partner, delivery_partner = self._get_partner(order)
                 ord_lines = self._create_sale_order_lines(
                     amazon_order_ref, marketplace, order)
-                order = sale_obj.create({
-                    'origin': amazon_order_ref,
-                    'date_order': date_order,
-                    'partner_id': invoice_partner.id,
-                    'partner_shipping_id': delivery_partner.id,
-                    'pricelist_id': pricelist.id,
-                    'order_line': [(0, 0, order_line) for order_line in ord_lines],
-                    'fiscal_position_id': marketplace.fiscal_position_id.id,
-                    'amazon_reference': amazon_order_ref,
-                    'amazon_fulfillment': amazon_fulfillment,
-                    'company_id': self.company_id.id,
-                    'user_id': amazon_user,
-                    'amazon_marketplace_id': marketplace.id,
-                    'payment_term_id': marketplace.payment_term_id.id,
-                })
+                vals = self.get_order_vals(order, ord_lines, amazon_order_ref, marketplace, invoice_partner, delivery_partner)
+                order = sale_obj.create(vals)
         else:
             res = super()._create_sale_order(order, marketplace, page)
             return res
+
+    def get_order_vals(self, order, ord_lines, amazon_order_ref, marketplace, invoice_partner, delivery_partner):
+        fulfillment_channel = order.get('FulfillmentChannel')
+        amazon_fulfillment = 'fba' if fulfillment_channel == 'AFN' else 'fbm'
+        date_order = parser.parse(
+            order.get('PurchaseDate')).replace(tzinfo=None)
+        pricelist = marketplace.pricelist_id
+        user_id = marketplace.user_id
+        team_id = marketplace.team_id
+        vals = {
+            'origin': amazon_order_ref,
+            'date_order': date_order,
+            'partner_id': invoice_partner.id,
+            'partner_shipping_id': delivery_partner.id,
+            'pricelist_id': pricelist.id,
+            'user_id': user_id.id,
+            'team_id': team_id.id,
+            'order_line': [(0, 0, order_line) for order_line in ord_lines],
+            'fiscal_position_id': marketplace.fiscal_position_id.id,
+            'amazon_reference': amazon_order_ref,
+            'amazon_fulfillment': amazon_fulfillment,
+            'company_id': self.company_id.id,
+            'amazon_marketplace_id': marketplace.id,
+            'payment_term_id': marketplace.payment_term_id.id,
+            }
+        return vals
 
     def _get_partner(self, order):
         if self.api_mode == 'sp':

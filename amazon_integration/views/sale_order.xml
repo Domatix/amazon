@@ -6,7 +6,7 @@
     <field name='inherit_id' ref='sale.view_order_form'/>
     <field name="arch" type="xml">
       <xpath expr="//notebook" position="inside">
-        <page name="amazon_info" string="Amazon Info">
+        <page name="amazon_info" string="Amazon Info"  attrs="{'invisible':[('amazon_reference','=', False)]}" >
           <group string="Order Info" name="amazon_info">
             <field name="amazon_fulfillment"/>
             <field name="amazon_reference"/>

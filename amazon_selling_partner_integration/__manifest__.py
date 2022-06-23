@@ -16,7 +16,9 @@
             'python-amazon-sp-api',
         ],
     },
-    'data': ['views/amazon_seller.xml'],
+    'data': [
+        'views/amazon_seller.xml',
+        ],
     'development_status': 'Alpha',
     'installable': True,
 }

@@ -239,8 +239,6 @@ class AmazonSeller(models.Model):
             has_next = bool(next_token)
 
     def _create_sale_order(self, order, marketplace, mws_obj):
-        IrDefault = self.env['ir.default'].sudo()
-        amazon_user = IrDefault.get('res.config.settings', 'amazon_user_id')
         sale_obj = self.env['sale.order']
         amazon_order_ref = order.get('AmazonOrderId').get('value')
         fulfillment_channel = order.get('FulfillmentChannel').get('value')
@@ -248,6 +246,8 @@ class AmazonSeller(models.Model):
         date_order = parser.parse(
             order.get('PurchaseDate').get('value')).astimezone(utc)
         pricelist = marketplace.pricelist_id
+        user_id = marketplace.user_id
+        team_id = marketplace.team_id
         invoice_partner, delivery_partner = self._get_partner(order)
         order_found = sale_obj.search([
             ('amazon_reference', '=', amazon_order_ref)])
@@ -260,12 +260,13 @@ class AmazonSeller(models.Model):
                 'partner_id': invoice_partner.id,
                 'partner_shipping_id': delivery_partner.id,
                 'pricelist_id': pricelist.id,
+                'user_id': user_id.id,
+                'team_id': team_id.id,
                 'order_line': [(0, 0, order_line) for order_line in ord_lines],
                 'fiscal_position_id': marketplace.fiscal_position_id.id,
                 'amazon_reference': amazon_order_ref,
                 'amazon_fulfillment': amazon_fulfillment,
                 'company_id': self.company_id.id,
-                'user_id': amazon_user,
                 'amazon_marketplace_id': marketplace.id,
                 'payment_term_id': marketplace.payment_term_id.id,
             })
