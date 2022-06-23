@@ -125,9 +125,9 @@ class AmazonSeller(models.Model):
                     sep='T')
             else:
                 last_import_date = last_import_date.isoformat(sep='T')
-            # to-do
 
             values = {'LastUpdatedAfter': last_import_date,
+                      'OrderStatuses': ['Unshipped', 'PartiallyShipped', 'Shipped'],
                       # 'RestrictedResources': ['buyerInfo', 'shippingAddress'],
                       }
             orders_data = []
@@ -156,8 +156,25 @@ class AmazonSeller(models.Model):
 
     def import_order_manual(self, marketplaces, seller, start_date, end_date):
         if self.api_mode == 'sp':
-            # to-do
-            print('to-do')
+            start_date = start_date.isoformat(sep='T')
+            end_date = end_date.isoformat(sep='T')
+            market_obj = self.env['amazon.marketplace']
+            marketplaceids = marketplaces.mapped('market_code')
+            values = {'LastUpdatedAfter': start_date,
+                      'LastUpdatedBefore': end_date,
+                      'OrderStatuses': ['Unshipped', 'PartiallyShipped', 'Shipped'],
+                      'MarketplaceIds': marketplaceids
+                      # 'RestrictedResources': ['buyerInfo', 'shippingAddress'],
+                      }
+            for page in self.load_all_orders(**values):
+                for order in page.payload.get('Orders'):
+                    market_code = order.get('MarketplaceId')
+                    marketplace = market_obj.search([
+                        ('market_code', '=', market_code)])
+                    sale_channel = order.get('SalesChannel')
+                    seller._create_sale_order(order, marketplace, page)
+            # commit a batch of 100 orders due to request throttled from Amazon
+            self.env.cr.commit()
         else:
             res = super().import_order_manual(marketplaces, seller, start_date, end_date)
             return res
@@ -200,7 +217,6 @@ class AmazonSeller(models.Model):
 
     def _get_partner(self, order):
         if self.api_mode == 'sp':
-            # to-do
             partner_obj = self.env['res.partner']
             country_obj = self.env['res.country']
             lang_obj = self.env['res.lang']

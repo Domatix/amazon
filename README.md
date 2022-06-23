@@ -5,4 +5,5 @@ Odoo Amazon Integration Modules
 
 | addon        | version           | summary  |
 | ------------- |:-------------:| :-----|
-| amazon_integration |13.0.1.0.1  | Sync markets and import orders both FBM and FBA. |
+| amazon_integration |13.0.1.0.1  | Sync markets and import orders both FBM and FBA using MWS-API. |
+| amazon_selling_partner_integration |13.0.1.0.1  | Sync markets and import orders both FBM and FBA using SP-API. |
