@@ -1,0 +1,36 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* amazon_automatic_workflow
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-28 10:14+0000\n"
+"PO-Revision-Date: 2022-06-28 10:14+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: amazon_automatic_workflow
+#: model:ir.model,name:amazon_automatic_workflow.model_amazon_seller
+msgid "Account for Amazon MWS"
+msgstr "Cuenta para Amazon"
+
+#. module: amazon_automatic_workflow
+#: model:ir.model,name:amazon_automatic_workflow.model_amazon_marketplace
+msgid "Amazon Markets from a seller"
+msgstr "Marketplaces de un vendedor"
+
+#. module: amazon_automatic_workflow
+#: model_terms:ir.ui.view,arch_db:amazon_automatic_workflow.view_amazon_marketplace_form
+msgid "Automatic Workflow"
+msgstr "Flujo automático"
+
+#. module: amazon_automatic_workflow
+#: model:ir.model.fields,field_description:amazon_automatic_workflow.field_amazon_marketplace__workflow_process_id
+msgid "Workflow process"
+msgstr "Proceso"
