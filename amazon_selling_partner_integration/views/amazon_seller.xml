@@ -22,6 +22,8 @@
           <field name="access_key" password="True" required="1"/>
           <field name="secret_key" password="True" required="1"/>
           <field name="merchant_id" required="1"/>
+          <field name="pii_access" />
+
       </group>
       </group>
     </field>

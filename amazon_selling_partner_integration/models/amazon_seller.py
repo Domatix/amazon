@@ -33,6 +33,9 @@ class AmazonSeller(models.Model):
     lwa_client_secret = fields.Char(
         string='LWA Client Secret')
 
+    pii_access = fields.Boolean(
+        string='PII Access')
+
     def connect_sp_api(self, country_id):
         credentials = dict(refresh_token=self.refresh_token,
                            lwa_app_id=self.lwa_app_id,
@@ -54,13 +57,6 @@ class AmazonSeller(models.Model):
         a generator function to return all pages, obtained by NextToken
         """
         credentials, country_code = self.connect_sp_api(self.country_id)
-        # token_res = Tokens(credentials=credentials, marketplace=country_code).create_restricted_data_token(restrictedResources=[{
-        #          "method": "GET",
-        #          "path": "/orders/v0/orders",
-        #          "dataElements": ["buyerInfo", "shippingAddress"]
-        #          }
-        # ])
-        # return Orders(restricted_data_token=token_res.payload['restrictedDataToken'],credentials=credentials, marketplace=country_code).get_orders(**kwargs)
         return Orders(credentials=credentials, marketplace=country_code).get_orders(**kwargs)
 
     def get_marketplaces(self):
@@ -128,9 +124,9 @@ class AmazonSeller(models.Model):
 
             values = {'LastUpdatedAfter': last_import_date,
                       'OrderStatuses': ['Unshipped', 'PartiallyShipped', 'Shipped'],
-                      # 'RestrictedResources': ['buyerInfo', 'shippingAddress'],
                       }
-            orders_data = []
+            if self.pii_access:
+                values['RestrictedResources'] = ['shippingAddress', 'buyerInfo']
             market_obj = self.env['amazon.marketplace']
             marketplaceids = marketplaces.mapped('market_code')
             for page in self.load_all_orders(**values):
@@ -164,8 +160,9 @@ class AmazonSeller(models.Model):
                       'LastUpdatedBefore': end_date,
                       'OrderStatuses': ['Unshipped', 'PartiallyShipped', 'Shipped'],
                       'MarketplaceIds': marketplaceids,
-                      # 'RestrictedResources': ['buyerInfo', 'shippingAddress'],
                       }
+            if self.pii_access:
+                values['RestrictedResources'] = ['shippingAddress', 'buyerInfo']
             for page in self.load_all_orders(**values):
                 for order in page.payload.get('Orders'):
                     market_code = order.get('MarketplaceId')
@@ -255,7 +252,7 @@ class AmazonSeller(models.Model):
             deliv_name = shipping_address.get('Name', email)
             phone = shipping_address.get('Phone', False)
             city = shipping_address.get('City', False)
-            invoice_name = buyer_info.get('BuyerName', email)
+            invoice_name = buyer_info.get('BuyerName', deliv_name or email)
             domain = []
             street and domain.append(('street', '=', street))
             street2 and domain.append(('street2', '=', street2))
