@@ -25,6 +25,7 @@
             <group name="info">
               <field name="country_id" required="1"/>
               <field name="company_id"/>
+              <field name="use_connector" />
               <field name="last_import_date_seller"/>
             </group>
           </group>

@@ -105,10 +105,6 @@ class AmazonSeller(models.Model):
             res = super().get_marketplaces()
             return res
 
-    # Create FBM and FBA orders
-    def action_import_orders(self):
-        self.import_orders()
-
     def import_orders(self, marketplaces=False, seller=False,
                       last_import_date=False, single_market=False):
         if self.api_mode == 'sp':

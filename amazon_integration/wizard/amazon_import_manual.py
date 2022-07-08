@@ -22,5 +22,9 @@ class name(models.TransientModel):
 
     def import_orders(self):
         seller = self.env['amazon.marketplace'].search([]).mapped('seller_id')
-        seller.import_order_manual(
-            self.marketplace_ids, seller, self.start_date, self.end_date)
+        if seller.use_connector:
+            seller.with_delay().import_order_manual(
+                self.marketplace_ids, seller, self.start_date, self.end_date)
+        else:
+            seller.import_order_manual(
+                self.marketplace_ids, seller, self.start_date, self.end_date)

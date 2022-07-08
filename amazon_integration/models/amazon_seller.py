@@ -46,6 +46,9 @@ class AmazonSeller(models.Model):
         default=datetime.now(),
         help='Date from the last order synced')
 
+    use_connector = fields.Boolean(
+        string='Use connector')
+
     def get_marketplaces(self):
         mws_connection = Sellers(access_key=str(self.access_key),
                                  secret_key=str(self.secret_key),
@@ -119,7 +122,13 @@ class AmazonSeller(models.Model):
 
     # Create FBM and FBA orders
     def action_import_orders(self):
-        self.import_orders()
+        if not self:
+            self = self.search([])
+        for seller in self:
+            if seller.use_connector:
+                seller.with_delay().import_orders()
+            else:
+                seller.import_orders()
 
     def import_orders(self, marketplaces=False, seller=False,
                       last_import_date=False, single_market=False):

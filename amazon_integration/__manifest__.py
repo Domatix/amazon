@@ -7,7 +7,7 @@
     'version': '12.0.1.0.0',
     'license': 'AGPL-3',
     'website': 'https://github.com/OCA/connector-ecommerce',
-    'depends': ['sale_management', 'stock'],
+    'depends': ['sale_management', 'stock', 'queue_job'],
     'category': 'Sales',
     'author': 'Domatix, '
               'Odoo Community Association (OCA)',
