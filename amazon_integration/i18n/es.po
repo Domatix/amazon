@@ -1,16 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* amazon_integration
+# 	* amazon_integration
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-28 13:10+0000\n"
-"PO-Revision-Date: 2020-04-28 13:10+0000\n"
-"POT-Creation-Date: 2019-11-07 13:26+0000\n"
-"PO-Revision-Date: 2019-11-07 13:26+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2022-07-08 11:18+0000\n"
+"PO-Revision-Date: 2022-07-08 11:18+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +17,8 @@ msgstr ""
 
 #. module: amazon_integration
 #: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_res_config_settings_form
-msgid "<span class=\"o_form_label\">Amazon User</span>\n"
+msgid ""
+"<span class=\"o_form_label\">Amazon User</span>\n"
 "                <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
 
@@ -36,7 +35,7 @@ msgstr "Clave de acceso"
 #. module: amazon_integration
 #: model:ir.model,name:amazon_integration.model_amazon_seller
 msgid "Account for Amazon MWS"
-msgstr "Cuenta para Amazon MWS"
+msgstr "Cuenta para Amazon"
 
 #. module: amazon_integration
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__message_needaction
@@ -47,6 +46,11 @@ msgstr "Acción Necesaria"
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__activity_ids
 msgid "Activities"
 msgstr "Actividades"
+
+#. module: amazon_integration
+#: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
 
 #. module: amazon_integration
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__activity_state
@@ -87,7 +91,7 @@ msgstr ""
 #. module: amazon_integration
 #: model:ir.model,name:amazon_integration.model_amazon_marketplace
 msgid "Amazon Markets from a seller"
-msgstr "Amazon martketplaces de un vendedor"
+msgstr "Marketplaces de un vendedor"
 
 #. module: amazon_integration
 #: model:ir.model.fields,field_description:amazon_integration.field_sale_order_line__amazon_order_item_id
@@ -121,7 +125,7 @@ msgstr "Costes de envío de Amazon"
 #. module: amazon_integration
 #: model_terms:ir.ui.view,arch_db:amazon_integration.action_amazon_import_wizard
 msgid "Amazon import Manual"
-msgstr "Importador manual Amazon"
+msgstr "Importar pedido manual"
 
 #. module: amazon_integration
 #: model:ir.actions.act_window,name:amazon_integration.action_amazon_import_act_window
@@ -132,7 +136,7 @@ msgstr "Importar pedidos Amazon"
 #: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_marketplace_search
 #: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_marketplace_tree
 msgid "Amazon marketplace"
-msgstr "Amazon marketplace"
+msgstr ""
 
 #. module: amazon_integration
 #: model:ir.actions.server,name:amazon_integration.ir_cron_import_amazon_orders_ir_actions_server
@@ -162,6 +166,7 @@ msgid "Color Index"
 msgstr "Índice de Colores"
 
 #. module: amazon_integration
+#: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__user_id
 #: model:ir.model.fields,field_description:amazon_integration.field_res_config_settings__amazon_user_id
 #: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_res_config_settings_form
 msgid "Commercial"
@@ -176,7 +181,7 @@ msgstr "Compañía"
 #. module: amazon_integration
 #: model:ir.model,name:amazon_integration.model_res_config_settings
 msgid "Config Settings"
-msgstr "Ajustes de configuración"
+msgstr "Opciones de Configuración"
 
 #. module: amazon_integration
 #: model:ir.ui.menu,name:amazon_integration.amazon_config_menu
@@ -224,7 +229,12 @@ msgstr "Productos por defecto"
 
 #. module: amazon_integration
 #: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_res_config_settings_form
-@ -231,7 +213,6 @@
+msgid "Default user for sales"
+msgstr "Comercial por defecto en ventas"
+
+#. module: amazon_integration
+#: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_marketplace_kanban
+msgid "Delete"
 msgstr "Suprimir"
 
 #. module: amazon_integration
@@ -232,7 +242,15 @@ msgstr "Suprimir"
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__display_name
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_seller__display_name
 msgid "Display Name"
-@ -247,11 +228,6 @@ msgstr "Menú desplegable" @@ -247,11 +228,6 @@ msgstr "Menú desplegable"
+msgstr "Nombre a mostrar"
+
+#. module: amazon_integration
+#: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_marketplace_kanban
+msgid "Dropdown menu"
+msgstr "Menú desplegable"
+
+#. module: amazon_integration
+#: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_marketplace_kanban
 msgid "Edit"
 msgstr "Editar"
 
@@ -242,14 +260,14 @@ msgid "End date"
 msgstr "Fecha fin"
 
 #. module: amazon_integration
+#: model:ir.model.fields.selection,name:amazon_integration.selection__sale_order__amazon_fulfillment__fba
 #: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_sale_order_search
-#: selection:sale.order,amazon_fulfillment:0
 msgid "FBA"
 msgstr ""
 
 #. module: amazon_integration
+#: model:ir.model.fields.selection,name:amazon_integration.selection__sale_order__amazon_fulfillment__fbm
 #: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_sale_order_search
-#: selection:sale.order,amazon_fulfillment:0
 msgid "FBM"
 msgstr ""
 
@@ -287,17 +305,24 @@ msgid "ID"
 msgstr ""
 
 #. module: amazon_integration
-#: model:ir.model.fields,help:amazon_integration.field_amazon_marketplace__message_unread
-msgid "If checked new messages require your attention."
-msgstr "Si está marcado, hay nuevos mensajes que requieren su atención"
+#: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: amazon_integration
+#: model:ir.model.fields,help:amazon_integration.field_amazon_marketplace__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
 
 #. module: amazon_integration
 #: model:ir.model.fields,help:amazon_integration.field_amazon_marketplace__message_needaction
+#: model:ir.model.fields,help:amazon_integration.field_amazon_marketplace__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 
 #. module: amazon_integration
 #: model:ir.model.fields,help:amazon_integration.field_amazon_marketplace__message_has_error
+#: model:ir.model.fields,help:amazon_integration.field_amazon_marketplace__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 
@@ -372,7 +397,7 @@ msgstr "Adjuntos principales"
 #: model:ir.actions.act_window,name:amazon_integration.amazon_marketplace_action
 #: model:ir.ui.menu,name:amazon_integration.amazon_marketplace_menu
 msgid "Marketplace"
-msgstr "Marketplace"
+msgstr ""
 
 #. module: amazon_integration
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__market_code
@@ -389,7 +414,7 @@ msgstr "Ajustes del Marketplace"
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_seller__marketplace_ids
 #: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_seller_form
 msgid "Marketplaces"
-msgstr "Marketplaces"
+msgstr ""
 
 #. module: amazon_integration
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_seller__merchant_id
@@ -434,8 +459,8 @@ msgstr "Número de acciones"
 
 #. module: amazon_integration
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__message_has_error_counter
-msgid "Number of error"
-msgstr "Número de error"
+msgid "Number of errors"
+msgstr ""
 
 #. module: amazon_integration
 #: model:ir.model.fields,help:amazon_integration.field_amazon_marketplace__message_needaction_counter
@@ -453,6 +478,11 @@ msgid "Number of unread messages"
 msgstr "Número de mensajes no leidos"
 
 #. module: amazon_integration
+#: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__order_count
+msgid "Order #"
+msgstr "Pedido #"
+
+#. module: amazon_integration
 #: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_marketplace_form
 #: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_res_config_settings_form
 #: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_sale_ref_form
@@ -460,19 +490,9 @@ msgid "Order Info"
 msgstr "Ventas"
 
 #. module: amazon_integration
-#: selection:amazon.marketplace,activity_state:0
-msgid "Overdue"
-msgstr "Atrasado"
-
-#. module: amazon_integration
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__payment_term_id
 msgid "Payment Term"
 msgstr "Plazo de pago"
-
-#. module: amazon_integration
-#: selection:amazon.marketplace,activity_state:0
-msgid "Planned"
-msgstr "Planeado"
 
 #. module: amazon_integration
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__pricelist_id
@@ -485,8 +505,23 @@ msgid "Responsible User"
 msgstr "Usuario responsable"
 
 #. module: amazon_integration
+#: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: amazon_integration
+#: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__team_id
+msgid "Sale Team"
+msgstr "Canal de ventas"
+
+#. module: amazon_integration
+#: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_marketplace_kanban
+msgid "Sales"
+msgstr "Pedidos"
+
+#. module: amazon_integration
 #: model:ir.model,name:amazon_integration.model_sale_order
-msgid "Sale Order"
+msgid "Sales Order"
 msgstr "Pedido de venta"
 
 #. module: amazon_integration
@@ -510,34 +545,30 @@ msgstr "Vendedor"
 #: model:ir.actions.act_window,name:amazon_integration.amazon_res_config_settings_action
 #: model:ir.ui.menu,name:amazon_integration.amazon_res_config_settings_menu
 msgid "Settings"
-msgstr "Ajustes"
+msgstr "Configuración"
 
 #. module: amazon_integration
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_import_manual__start_date
 msgid "Start date"
 msgstr "Fecha inicio"
-msgstr "Configuración"
 
 #. module: amazon_integration
 #: model:ir.model.fields,help:amazon_integration.field_amazon_marketplace__activity_state
-msgid "Status based on activities\n"
+msgid ""
+"Status based on activities\n"
 "Overdue: Due date is already passed\n"
 "Today: Activity date is today\n"
 "Planned: Future activities."
-msgstr "Estado basado en actividades\n"
+msgstr ""
+"Estado basado en actividades\n"
 "Vencida: la fecha tope ya ha pasado\n"
 "Hoy: La fecha tope es hoy\n"
 "Planificada: futuras actividades."
 
 #. module: amazon_integration
-#: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__tax_id
-msgid "Tax"
-msgstr "Impuesto"
-
-#. module: amazon_integration
-#: selection:amazon.marketplace,activity_state:0
-msgid "Today"
-msgstr "Hoy"
+#: model:ir.model.fields,help:amazon_integration.field_amazon_marketplace__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
 
 #. module: amazon_integration
 #: model:product.product,uom_name:amazon_integration.amazon_gift_product
@@ -546,8 +577,8 @@ msgstr "Hoy"
 #: model:product.template,uom_name:amazon_integration.amazon_gift_product_product_template
 #: model:product.template,uom_name:amazon_integration.amazon_not_found_product_product_template
 #: model:product.template,uom_name:amazon_integration.amazon_shipping_product_product_template
-msgid "Unit(s)"
-msgstr "Unidad(es)"
+msgid "Units"
+msgstr "Unidades"
 
 #. module: amazon_integration
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__message_unread
@@ -558,6 +589,11 @@ msgstr "Mensajes por leer"
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__message_unread_counter
 msgid "Unread Messages Counter"
 msgstr "Contador de mensajes sin leer"
+
+#. module: amazon_integration
+#: model:ir.model.fields,field_description:amazon_integration.field_amazon_seller__use_connector
+msgid "Use connector"
+msgstr "Usar conector"
 
 #. module: amazon_integration
 #: model:ir.model.fields,field_description:amazon_integration.field_amazon_marketplace__website_message_ids
@@ -578,13 +614,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:amazon_integration.view_amazon_seller_form
 msgid "e.g Spanish Seller"
 msgstr "ej. Vendedor S.L."
-
-#. module: amazon_integration
-#: model:product.product,weight_uom_name:amazon_integration.amazon_gift_product
-#: model:product.product,weight_uom_name:amazon_integration.amazon_not_found_product
-#: model:product.product,weight_uom_name:amazon_integration.amazon_shipping_product
-#: model:product.template,weight_uom_name:amazon_integration.amazon_gift_product_product_template
-#: model:product.template,weight_uom_name:amazon_integration.amazon_not_found_product_product_template
-#: model:product.template,weight_uom_name:amazon_integration.amazon_shipping_product_product_template
-msgid "kg"
-msgstr ""

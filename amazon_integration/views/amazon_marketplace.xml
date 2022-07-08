@@ -74,6 +74,7 @@
         <field name="color"/>
         <field name="country_id"/>
         <field name="seller_id"/>
+        <field name="order_count"/>
         <templates>
           <t t-name="kanban-box">
             <div t-attf-class="#{kanban_color(record.color.raw_value)} oe_kanban_global_click" style="height:150px">
@@ -100,12 +101,27 @@
                   <ul class="oe_kanban_colorpicker" data-field="color"/>
                 </div>
               </div>
-              <div class="o_kanban_primary_left">
+              <div class="container o_kanban_card_content">
+                <div class="row" style="padding-top:20px;">
+              <div class="col-7 o_kanban_primary_left">
               <button type="action" name="%(amazon_integration.action_amazon_import_act_window)d" style="margin-bottom:20px;" class="btn btn-primary">
                 <span>Import Market Orders</span>
                 </button>
               </div>
+              <div class="col-5 o_kanban_primary_right">
+                <div class="row">
+                  <div class="col-8">
+                  <a name="action_view_sale_order"
+                     type="object">Sales</a>
+                   </div>
+                     <div class="col-4">
+                        <t t-esc="record.order_count.value"/>
+                    </div>
+                </div>
+              </div>
             </div>
+            </div>
+          </div>
           </t>
         </templates>
       </kanban>

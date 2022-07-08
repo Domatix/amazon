@@ -58,6 +58,16 @@ class AmazonMarketplace(models.Model):
         comodel_name='res.users',
         string='Commercial')
 
+    order_count = fields.Integer(
+        string='Order #',
+        compute='_compute_order_count')
+
+
+    def _compute_order_count(self):
+        for record in self:
+            orders = self.env['sale.order'].search([('amazon_marketplace_id','=', record.id)])
+            record.order_count = len(orders)
+
     # Import FBM and FBA orders
 
     def import_market_orders(self):
@@ -65,3 +75,10 @@ class AmazonMarketplace(models.Model):
                                      seller=self.seller_id,
                                      last_import_date=self.last_import_date,
                                      single_market=True)
+    def action_view_sale_order(self):
+        action = self.env.ref('sale.action_orders').read()[0]
+        action['context'] = {
+            'search_default_amazon_marketplace_id': self.id,
+            'default_amazon_marketplace_id': self.id,
+        }
+        return action
