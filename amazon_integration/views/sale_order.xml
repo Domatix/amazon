@@ -16,6 +16,16 @@
       </xpath>
     </field>
   </record>
+  <record id="view_amazon_sale_ref_tree" model="ir.ui.view">
+      <field name="name">view.amazon_sale_ref.tree</field>
+      <field name="model">sale.order</field>
+      <field name='inherit_id' ref='sale.view_quotation_tree'/>
+      <field name="arch" type="xml">
+          <field name="name" position="after">
+            <field name="amazon_fulfillment" />
+          </field>
+      </field>
+  </record>
   <record id="view_amazon_sale_order_search" model="ir.ui.view">
     <field name="name">view.amazon_sale_order.search</field>
     <field name="model">sale.order</field>
