@@ -327,7 +327,6 @@ class AmazonSeller(models.Model):
         delivery_vals = {
             'name': deliv_name,
             'is_company': False,
-            'customer': True,
             'street': street,
             'street2': street2,
             'city': city,
@@ -343,7 +342,7 @@ class AmazonSeller(models.Model):
         delivery_partner = partner_obj.search(domain, limit=1)
         if not delivery_partner:
             delivery_partner = partner_obj.create(delivery_vals)
-        domain.remove(('name', '=', deliv_name))
+        deliv_name and domain.remove(('name', '=', deliv_name))
         domain.append(('name', '=', invoice_name))
         domain.remove(('type', '=', 'delivery'))
         domain.append(('type', '=', 'invoice'))
@@ -363,7 +362,6 @@ class AmazonSeller(models.Model):
                 invoice_partner_vals = {
                     'name': invoice_name,
                     'is_company': False,
-                    'customer': True,
                     'street': street,
                     'street2': street2,
                     'city': city,
