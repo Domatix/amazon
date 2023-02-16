@@ -17,6 +17,7 @@
         ],
     },
     'data': ['security/ir.model.access.csv',
+             'security/amazon_groups.xml',
              'wizard/amazon_import_manual.xml',
              'data/ir_cron.xml',
              'data/product_data.xml',

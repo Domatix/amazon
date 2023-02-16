@@ -40,7 +40,7 @@
 
   <!-- Menus -->
 
-  <menuitem id="amazon_menu" name="Amazon" web_icon="amazon_integration,static/description/icon.png" sequence="20"/>
+  <menuitem id="amazon_menu" groups="amazon_integration.amazon_integration_group" name="Amazon" web_icon="amazon_integration,static/description/icon.png" sequence="20"/>
 
   <menuitem id="amazon_dashboard_menu" parent="amazon_menu" action="amazon_marketplace_dashboard_action" sequence="10"/>
 

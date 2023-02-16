@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record model="res.groups" id="amazon_integration_group">
+      <field name="name">Amazon conector</field>
+      <field name="comment">Permiso para acceder al módulo de Amazon.</field>
+      <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+  </record>
+</odoo>
