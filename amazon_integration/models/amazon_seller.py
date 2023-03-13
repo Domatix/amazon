@@ -336,9 +336,11 @@ class AmazonSeller(models.Model):
             'zip': postalcode,
             'state_id': state.id,
             'email': email,
-            'lang': lang.code,
+            # 'lang': lang.code,
             'company_id': self.company_id.id
         }
+        if lang:
+            delivery_vals.update(lang=lang.code)
         delivery_partner = partner_obj.search(domain, limit=1)
         if not delivery_partner:
             delivery_partner = partner_obj.create(delivery_vals)
@@ -371,9 +373,11 @@ class AmazonSeller(models.Model):
                     'zip': postalcode,
                     'state_id': state.id,
                     'email': email,
-                    'lang': lang.code,
+                    # 'lang': lang.code,
                     'company_id': self.env.user.company_id.id
                 }
+                if lang:
+                    invoice_partner_vals.update(lang=lang.code)
                 invoice_partner = partner_obj.create(invoice_partner_vals)
         delivery_partner.parent_id = invoice_partner.id
         return invoice_partner, delivery_partner
