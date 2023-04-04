@@ -436,6 +436,7 @@ class AmazonSeller(models.Model):
     def get_item_values(self, item, product, order_line_vals, marketplace):
         quantity = float(item.get('QuantityOrdered').get('value'))
         item_price = float(item.get('ItemPrice').get('Amount').get('value'))
+        item_price = item_price / quantity
         description = item.get('Title').get('value')
         fiscal_position = marketplace.fiscal_position_id
         product_tax = product.taxes_id.filtered(
