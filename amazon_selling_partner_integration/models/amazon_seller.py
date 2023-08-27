@@ -361,6 +361,7 @@ class AmazonSeller(models.Model):
         if self.api_mode == 'sp':
             quantity = float(item.get('QuantityOrdered'))
             item_price = float(item.get('ItemPrice').get('Amount'))
+            item_price = item_price / quantity
             description = item.get('Title')
             fiscal_position = marketplace.fiscal_position_id
             product_tax = product.taxes_id.filtered(
